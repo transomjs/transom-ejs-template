@@ -5,7 +5,7 @@ const TransomEjsHandler = require('./lib/ejsHandler');
 function TransomEjsTemplate() {
 	this.initialize = function (server, options) {
 		const regKey = options.registryKey || 'transomTemplate';
-		debug("Adding TransomEjsHandler to the registry as %s", regKey)
+		debug("Adding TransomEjsHandler to the registry as:", regKey)
 		server.registry.set(regKey, new TransomEjsHandler(server, options));
 	}
 }
