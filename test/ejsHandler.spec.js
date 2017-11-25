@@ -14,7 +14,7 @@ describe('EjsHandler', function () {
 
     before(function () {
         server.registry = new PocketRegistry();
-        server.registry.set('transom-options.api_definition.template', templateSample);
+        server.registry.set('transom-config.definition.template', templateSample);
     });
 
     it('should have two functions', function () {
@@ -70,8 +70,8 @@ envMessage=This page is in TESTING.
 
         it('should return simple HTML template, template folder as server option', function () {
             const options = {};
-            server.registry.remove('transom-options.api_definition.template.htmlTemplatePath');
-            server.registry.set('transom-options.api_definition.template.htmlTemplatePath', 'html');
+            server.registry.remove('transom-config.definition.template.htmlTemplatePath');
+            server.registry.set('transom-config.definition.template.htmlTemplatePath', 'html');
 
             const ejsHandler = new EjsHandler(server, options);
             const renderData = {
@@ -136,8 +136,8 @@ envMessage=Message sent from TESTING.
 
         it('should return simple Email template, template folder as server option', function () {
             const options = {};
-            server.registry.remove('transom-options.api_definition.template.emailTemplatePath');
-            server.registry.set('transom-options.api_definition.template.emailTemplatePath', 'html');
+            server.registry.remove('transom-config.definition.template.emailTemplatePath');
+            server.registry.set('transom-config.definition.template.emailTemplatePath', 'html');
 
             const ejsHandler = new EjsHandler(server, options);
             const renderData = {
