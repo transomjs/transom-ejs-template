@@ -6,7 +6,7 @@ Add simple EJS templating functions to your server-side Transomjs code.
 
 ## Installation
 ```bash
-$ npm install --save transom-ejs-template
+$ npm install --save @transomjs/transom-ejs-template
 ```
 
 ## Usage
