@@ -27,7 +27,13 @@ describe('EjsHandler', function () {
 
     describe('renderHtmlTemplate', function () {
         it('should return HTML template contents, template folder as render option', function () {
-            const options = {};
+            const options = {
+                templateData: {
+                    hostname: '/',
+                    pageTitle: 'myPageTemplate',
+                    envMessage: 'This page is in TESTING.'
+                }                
+            };
             const ejsHandler = new EjsHandler(server, options);
             const renderData = {
                 foo: 123,
@@ -114,10 +120,10 @@ barUndefined=
 baz=Labbat&#39;s Blue
 foo=987
 environment=TESTING
-hostname=/
+hostname=
 pageTitle=
 there.
-envMessage=Message sent from TESTING.
+envMessage=
 \n`);
         });
 
