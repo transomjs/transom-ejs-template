@@ -1,8 +1,8 @@
 # transom-ejs-template
 Add simple EJS templating functions to your server-side Transomjs code.
 
-[![Build Status](https://travis-ci.org/transomjs/transom-smtp.svg?branch=master)](https://travis-ci.org/transomjs/transom-ejs-template)
-
+[![Build Status](https://travis-ci.org/transomjs/transom-ejs-template.svg?branch=master)](https://travis-ci.org/transomjs/transom-ejs-template)
+[![Coverage Status](https://coveralls.io/repos/github/transomjs/transom-ejs-template/badge.svg?branch=master)](https://coveralls.io/github/transomjs/transom-ejs-template?branch=master)
 
 ## Installation
 ```bash
@@ -19,9 +19,7 @@ renderHtmlTemplate(templateName, data, htmlOptions)
 * `templateName` is the filename as found in the templatePath, without the ".ejs" extension. 
 * `data` is a JavaScript object containing anything that might be used within the template or it's nested child templates. Several attributes are added to `data` each time, the include:
     * environment is set to the process.env.NODE_ENV or 'DEVELOPMENT'
-    * envMessage is set empty when the `environment` equals 'PRODUCTION', otherwise it contains: `This page is in ${data.environment}.`
-    * hostname is pulled from the request. If not found, it contains '/';
-    * pageTitle is set to the templateName if it's not provided by the caller;
+    * templateName is set to the filename of the current template
 * `htmlOptions.templatePath` allows overriding the default path and loading a template from somewhere else;
 
 ### Render Email templates
@@ -29,8 +27,7 @@ renderEmailTemplate(templateName, data, emailOptions)
 * `templateName` is the filename as found in the templatePath, without the ".ejs" extension. 
 * `data` is a JavaScript object containing anything that might be used within the template or it's nested child templates. Several attributes are added to `data` each time, the include:
     * environment is set to the process.env.NODE_ENV or 'DEVELOPMENT'
-    * envMessage is set empty when the `environment` equals 'PRODUCTION', otherwise it contains: `Message sent from ${data.environment}.`
-    * hostname is pulled from the request. If not found, it contains '/';
+    * templateName is set to the filename of the current template
 * `emailOptions.templatePath` allows overriding the default path and loading a template from somewhere else;
 
 

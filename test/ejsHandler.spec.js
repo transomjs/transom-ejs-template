@@ -8,6 +8,36 @@ const fs = require('fs');
 const path = require('path');
 const PocketRegistry = require('pocket-registry');
 
+describe('EjsHandler with an empty template node', function () {
+
+    const server = {};
+
+    before(function () {
+        server.registry = new PocketRegistry();
+        server.registry.set('transom-config.definition.template', {});
+    });
+
+    it('should return HTML template contents from the default template folder', function () {
+        const options = {
+            templateData: {
+                bar: '3.14'
+            }
+        };
+        const ejsHandler = new EjsHandler(server, options);
+        const renderData = {
+            foo: 890
+        };
+        const renderOptions = {};
+        const page = ejsHandler.renderHtmlTemplate("pageTemplate", renderData, renderOptions);
+        expect(page).to.equal(`This template is in the default folder!
+foo=890
+bar=3.14
+envMessage=
+\n`);
+    });
+
+});
+
 describe('EjsHandler', function () {
 
     const server = {};
@@ -32,7 +62,7 @@ describe('EjsHandler', function () {
                     hostname: '/',
                     pageTitle: 'myPageTemplate',
                     envMessage: 'This page is in TESTING.'
-                }                
+                }
             };
             const ejsHandler = new EjsHandler(server, options);
             const renderData = {
@@ -56,6 +86,36 @@ foo=123
 environment=TESTING
 hostname=/
 pageTitle=myPageTemplate
+there.
+envMessage=This page is in TESTING.
+\n`);
+        });
+
+        it('should return HTML template contents, template folder as render option', function () {
+            const options = {
+                templatePath: 'html/redSubfolder',
+                templateData: {
+                    envMessage: 'This page is in TESTING.'
+                }
+            };
+            const ejsHandler = new EjsHandler(server, options);
+            const renderData = {
+                foo: 890,
+                bar: 123.789,
+                barNull: null,
+                barUndefined: undefined,
+                baz: "Coors Light"
+            };
+            const renderOptions = {};
+            const page = ejsHandler.renderHtmlTemplate("pageTemplate", renderData, renderOptions);
+            expect(page).to.equal(`Hello
+foo=890
+bar=123.789
+barNull=
+barUndefined=
+baz=Coors Light
+foo=890
+environment=TESTING
 there.
 envMessage=This page is in TESTING.
 \n`);
@@ -162,5 +222,5 @@ envMessage=
             expect(ejsHandler.renderEmailTemplate.bind(ejsHandler, "not-exist", renderData, renderOptions)).to.throw(Error);
         });
     });
-    
+
 });
