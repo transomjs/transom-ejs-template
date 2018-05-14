@@ -12,7 +12,7 @@ $ npm install --save @transomjs/transom-ejs-template
 ## Usage
 Transom-ejs-template is a simple module that provides a really simple way to send HTML (or text) formatted emails or even simple web pages.Using all the features of EJS, you can insert data into your templates or include other ejs templates etc.
 
-After transom.initialize, an object is stored in the registry with 'transomTemplate' as the key. Each method will return a completely rendered template with all includes resoved and interpolated data.
+After transom.initialize, an object is stored in the registry with 'transomTemplate' as the key. Each method will return a completely rendered template with all includes resolved and interpolated data.
 
 ### Render HTML templates
 renderHtmlTemplate(templateName, data, htmlOptions)
