@@ -4,6 +4,7 @@
   "description": "Add EJS templating for email and html",
   "main": "index.js",
   "scripts": {
+    "deploy": "np",
     "test": "cross-env NODE_ENV=testing DEBUG='transom:*' nyc mocha",
     "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
@@ -37,6 +38,7 @@
   },
   "dependencies": {
     "debug": "^3.1.0",
-    "ejs": "^2.5.7"
+    "ejs": "^2.5.7",
+    "np": "^3.0.4"
   }
 }
