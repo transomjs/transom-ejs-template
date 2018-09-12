@@ -10,9 +10,29 @@ $ npm install --save @transomjs/transom-ejs-template
 ```
 
 ## Usage
-Transom-ejs-template is a simple module that provides a really simple way to send HTML (or text) formatted emails or even simple web pages.Using all the features of EJS, you can insert data into your templates or include other ejs templates etc.
+Transom-ejs-template is a module that provides a really simple way to send HTML (or text) formatted emails or render simple web pages. Using all the features of [EJS](https://www.npmjs.com/package/ejs), you can insert data into your templates or include other ejs templates using a relative path.
 
-After transom.initialize, an object is stored in the registry with 'transomTemplate' as the key. Each method will return a completely rendered template with all includes resolved and interpolated data.
+After transom.initialize, an object is stored in the registry with 'transomTemplate' as the key. Each of the following methods will return a completely rendered template with all includes resolved and interpolated data.
+
+```
+    server.get('/about', function (req, res, next) {
+        // Fetch the configured Template module from the Registry.
+        const template = server.registry.get('transomTemplate');
+
+        // Some simple data for insertion into the template.
+        const data = {
+            title: "My Dawg Walker App",
+            date: new Date(),
+            year: new Date().getFullYear()
+        };
+        const content = template.renderHtmlTemplate('about', data);
+
+        // Tell the browser what type of content we're sending.
+        res.setHeader('content-type', 'text/html');
+        res.end(content);
+        next(false);
+    });
+```
 
 ### Render HTML templates
 renderHtmlTemplate(templateName, data, htmlOptions)
@@ -20,14 +40,15 @@ renderHtmlTemplate(templateName, data, htmlOptions)
 * `data` is a JavaScript object containing anything that might be used within the template or it's nested child templates. Several attributes are added to `data` each time, the include:
     * environment is set to the process.env.NODE_ENV or 'DEVELOPMENT'
     * templateName is set to the filename of the current template
-* `htmlOptions.templatePath` allows overriding the default path and loading a template from somewhere else;
+* `htmlOptions.templatePath` allows overriding the default path and loading a template from somewhere else.
 
 ### Render Email templates
 renderEmailTemplate(templateName, data, emailOptions)
 * `templateName` is the filename as found in the templatePath, without the ".ejs" extension. 
-* `data` is a JavaScript object containing anything that might be used within the template or it's nested child templates. Several attributes are added to `data` each time, the include:
+* `data` is a JavaScript object containing anything that might be used within the template or it's nested child templates. Several attributes are added to `data` each time, they include:
     * environment is set to the process.env.NODE_ENV or 'DEVELOPMENT'
     * templateName is set to the filename of the current template
-* `emailOptions.templatePath` allows overriding the default path and loading a template from somewhere else;
+* `emailOptions.templatePath` allows overriding the default path and loading a template from somewhere else.
 
-
+## Testing
+When running tests and looking for templates, set the `process.env.NODE_ENV` to `TESTING` to locate templates in the `../test` folder.

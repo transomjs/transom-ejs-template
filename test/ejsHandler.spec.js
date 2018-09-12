@@ -1,11 +1,7 @@
 "use strict";
 const expect = require('chai').expect;
-const sinon = require('sinon');
 const EjsHandler = require('../lib/ejsHandler');
 const templateSample = require('./ejsHandler.sample');
-const ejs = require('ejs');
-const fs = require('fs');
-const path = require('path');
 const PocketRegistry = require('pocket-registry');
 
 describe('EjsHandler with an empty template node', function () {
@@ -19,7 +15,7 @@ describe('EjsHandler with an empty template node', function () {
 
     it('should return HTML template contents from the default template folder', function () {
         const options = {
-            templateData: {
+            data: {
                 bar: '3.14'
             }
         };
@@ -58,7 +54,7 @@ describe('EjsHandler', function () {
     describe('renderHtmlTemplate', function () {
         it('should return HTML template contents, template folder as render option', function () {
             const options = {
-                templateData: {
+                data: {
                     hostname: '/',
                     pageTitle: 'myPageTemplate',
                     envMessage: 'This page is in TESTING.'
@@ -94,7 +90,7 @@ envMessage=This page is in TESTING.
         it('should return HTML template contents, template folder as render option', function () {
             const options = {
                 templatePath: 'html/redSubfolder',
-                templateData: {
+                data: {
                     envMessage: 'This page is in TESTING.'
                 }
             };
