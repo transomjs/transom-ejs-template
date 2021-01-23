@@ -52,3 +52,18 @@ renderEmailTemplate(templateName, data, emailOptions)
 
 ## Testing
 When running tests and looking for templates, set the `process.env.NODE_ENV` to `TESTING` to locate templates in the `../test` folder.
+
+## Updating from 1.x.x
+EJS templating for `includes` has changed between transom-ejs 1.x.x and 2.0.0.
+
+In the version 1 release, we were able to include EJS templates with the following syntax.
+```javascript
+<% include user/show %>
+```
+The correct syntax should be:
+```javascript
+<%- include('user/show') %>
+```
+
+## Need Support?
+TransomJS is developed and maintained by [BinaryOps Software Inc.](https://binaryops.ca) in Canada.
