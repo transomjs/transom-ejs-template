@@ -19,9 +19,9 @@ renderHtmlTemplate(templateName, data, htmlOptions)
 * `templateName` is the filename as found in the templatePath, without the ".ejs" extension. 
 * `data` is a JavaScript object containing anything that might be used within the template or it's nested child templates. Several attributes are added to `data` each time, the include:
     * environment is set to the process.env.NODE_ENV or 'DEVELOPMENT'
-    * envMessage is set empty when the `environment` equals 'PRODUCTION', otherwise it contains: `This page is in ${data.environment}.`
-    * hostname is pulled from the request. If not found, it contains '/';
-    * pageTitle is set to the templateName if it's not provided by the caller;
+    * [deprecated] envMessage is set empty when the `environment` equals 'PRODUCTION', otherwise it contains: `This page is in ${data.environment}.`
+    * [deprecated] hostname is pulled from the request. If not found, it contains '/';
+    * [deprecated] pageTitle is set to the templateName if it's not provided by the caller;
 * `htmlOptions.templatePath` allows overriding the default path and loading a template from somewhere else;
 
 ### Render Email templates

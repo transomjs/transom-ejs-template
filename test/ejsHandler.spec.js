@@ -1,20 +1,24 @@
 "use strict";
-const expect = require('chai').expect;
-const sinon = require('sinon');
+// const expect = require('chai').expect;
+// const sinon = require('sinon');
 const EjsHandler = require('../lib/ejsHandler');
 const templateSample = require('./ejsHandler.sample');
-const ejs = require('ejs');
-const fs = require('fs');
-const path = require('path');
+// const ejs = require('ejs');
+// const fs = require('fs');
+// const path = require('path');
 const PocketRegistry = require('pocket-registry');
 
 describe('EjsHandler', function () {
 
     const server = {};
+    let expect;
 
     before(function () {
         server.registry = new PocketRegistry();
         server.registry.set('transom-config.definition.template', templateSample);
+
+        // Use a dynamic import for the chai ES module!
+        return import("chai").then((chai) => (expect = chai.expect));
     });
 
     it('should have two functions', function () {
@@ -48,10 +52,8 @@ barUndefined=
 baz=Rickard&#39;s Red
 foo=123
 environment=TESTING
-hostname=/
-pageTitle=myPageTemplate
+templateName=myPageTemplate
 there.
-envMessage=This page is in TESTING.
 \n`);
         });
 
@@ -114,10 +116,8 @@ barUndefined=
 baz=Labbat&#39;s Blue
 foo=987
 environment=TESTING
-hostname=/
-pageTitle=
+templateName=myPageTemplate
 there.
-envMessage=Message sent from TESTING.
 \n`);
         });
 
