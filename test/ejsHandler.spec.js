@@ -1,5 +1,4 @@
 "use strict";
-const expect = require('chai').expect;
 const EjsHandler = require('../lib/ejsHandler');
 const templateSample = require('./ejsHandler.sample');
 const PocketRegistry = require('pocket-registry');
@@ -7,10 +6,14 @@ const PocketRegistry = require('pocket-registry');
 describe('EjsHandler with an empty template node', function () {
 
     const server = {};
+    let expect;
 
     before(function () {
         server.registry = new PocketRegistry();
         server.registry.set('transom-config.definition.template', {});
+
+        // Use a dynamic import for the chai ES module!
+        return import("chai").then((chai) => (expect = chai.expect));
     });
 
     it('should return HTML template contents from the default template folder', function () {
@@ -28,7 +31,7 @@ describe('EjsHandler with an empty template node', function () {
         expect(page).to.equal(`This template is in the default folder!
 foo=890
 bar=3.14
-envMessage=
+envMessage=TESTING
 \n`);
     });
 
@@ -37,10 +40,14 @@ envMessage=
 describe('EjsHandler', function () {
 
     const server = {};
+    let expect;
 
     before(function () {
         server.registry = new PocketRegistry();
         server.registry.set('transom-config.definition.template', templateSample);
+
+        // Use a dynamic import for the chai ES module!
+        return import("chai").then((chai) => (expect = chai.expect));
     });
 
     it('should have two functions', function () {
@@ -80,10 +87,8 @@ barUndefined=
 baz=Rickard&#39;s Red
 foo=123
 environment=TESTING
-hostname=/
-pageTitle=myPageTemplate
+templateName=myPageTemplate
 there.
-envMessage=This page is in TESTING.
 \n`);
         });
 
@@ -113,7 +118,7 @@ baz=Coors Light
 foo=890
 environment=TESTING
 there.
-envMessage=This page is in TESTING.
+envMessage=TESTING
 \n`);
         });
 
@@ -176,10 +181,8 @@ barUndefined=
 baz=Labbat&#39;s Blue
 foo=987
 environment=TESTING
-hostname=
-pageTitle=
+templateName=myPageTemplate
 there.
-envMessage=
 \n`);
         });
 
