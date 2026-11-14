@@ -1,6 +1,6 @@
 # @transomjs/transom-ejs-template change log
 
-## 6.0.0
+## 5.0.0
 - **Uses ejs 7** (was 3). ejs 7 ignores options placed in the data object, so the template's
   `filename` (needed for relative `include`s) is now passed as a render option; it's still in
   the data too. ejs 6 also stopped templates reading inherited properties of the data
