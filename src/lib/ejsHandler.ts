@@ -63,11 +63,9 @@ function TransomEjsHandler(
     }
     const tmp = fs.readFileSync(filename, "utf8");
 
-    // Including 'filename' allows ejs relative includes to work!
-    return ejs.render(tmp, {
-      data,
-      filename,
-    });
+    // `filename` as an option makes ejs resolve relative includes. (ejs 7 no longer reads
+    // options from the data object; it stays there too, for templates that read it.)
+    return ejs.render(tmp, { data, filename }, { filename });
   }
 
   function renderEmailTemplate(
@@ -97,11 +95,9 @@ function TransomEjsHandler(
     }
     const tmp = fs.readFileSync(filename, "utf8");
 
-    // Including 'filename' allows ejs relative includes to work!
-    return ejs.render(tmp, {
-      data,
-      filename,
-    });
+    // `filename` as an option makes ejs resolve relative includes. (ejs 7 no longer reads
+    // options from the data object; it stays there too, for templates that read it.)
+    return ejs.render(tmp, { data, filename }, { filename });
   }
 
   return {

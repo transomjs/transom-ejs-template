@@ -1,6 +1,12 @@
 # @transomjs/transom-ejs-template change log
 
 ## 4.0.0
+- **Uses ejs 7** (was 3). ejs 7 ignores options placed in the data object, so the template's
+  `filename` (needed for relative `include`s) is now passed as a render option; it's still in
+  the data too. ejs 6 also stopped templates reading inherited properties of the data
+  object: pass plain objects as render data, which is what the renderer always did with its
+  own data.
+- Dev tools: mocha 12, chai 6, c8 12, cross-env 10, np 12.
 - **Requires Node.js 22 or newer** (`engines.node` is `>=22`). The compiled code targets ES2023,
   and CI runs on Node 22 and 24.
 - Rewritten in TypeScript, with type definitions. The compiled code is in `dist/`;
