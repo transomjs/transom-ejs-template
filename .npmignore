@@ -9,5 +9,4 @@ docs
 *.tgz
 *~
 .vscode
-.travis.yml
 release.js
