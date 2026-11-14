@@ -1,8 +1,7 @@
 # transom-ejs-template
 Add simple EJS templating functions to your server-side Transomjs code.
 
-[![Build Status](https://travis-ci.org/transomjs/transom-ejs-template.svg?branch=master)](https://travis-ci.org/transomjs/transom-ejs-template)
-[![Coverage Status](https://coveralls.io/repos/github/transomjs/transom-ejs-template/badge.svg?branch=master)](https://coveralls.io/github/transomjs/transom-ejs-template?branch=master)
+[![CI](https://github.com/transomjs/transom-ejs-template/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/transomjs/transom-ejs-template/actions/workflows/ci.yml)
 
 ## Installation
 ```bash
