@@ -1,6 +1,6 @@
 {
   "name": "@transomjs/transom-ejs-template",
-  "version": "5.0.0",
+  "version": "6.0.0",
   "description": "A TransomJS module to provide EJS templating for email and html",
   "main": "dist/index.js",
   "scripts": {
